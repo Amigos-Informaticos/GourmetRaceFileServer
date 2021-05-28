@@ -1,0 +1,35 @@
+name: Construir y push
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.EDSON_DOCKERHUB_ID }}
+          password: ${{ secrets.EDSON_DOCKERHUB_TOKEN }}
+
+      - name: Configurar QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Configurar buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Construir con buildx
+        run: |
+          docker buildx build \
+          --push \
+          --tag amigosinformaticos/file_server_gourmet_race:latest \
+          --platform linux/arm/v6 .

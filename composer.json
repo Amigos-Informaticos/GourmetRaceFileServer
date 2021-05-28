@@ -1,0 +1,15 @@
+{
+  "name": "aidtv2/smphp",
+  "description": "",
+  "autoload": {
+    "classmap": [
+      "Configuration",
+      "Connection",
+      "Model",
+      "Service",
+      "ThriftLibs",
+      "Util",
+      "vendor"
+    ]
+  }
+}
