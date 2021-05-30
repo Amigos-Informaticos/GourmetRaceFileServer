@@ -3,7 +3,6 @@
 namespace Service;
 
 use Configuration\ConfigServer;
-use Exception;
 use fileservice\GalleryServiceIf;
 
 class FileServiceHandler implements GalleryServiceIf
